@@ -19,13 +19,8 @@ public class Day11_Challenge_MarketTask {
 
     @Before
     public void setUp(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        options.addArguments("--start-maximized");
-        options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--allow-insecure-localhost");
-        options.addArguments("--acceptInsecureCerts");
-        driver = new ChromeDriver(options);
+
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
@@ -91,7 +86,7 @@ public class Day11_Challenge_MarketTask {
                 }
         //********************  ilkel sayfa yapısı ***********************************************
         List<WebElement> productSize = null;
-        try {
+            try {
             productSize = driver.findElements(By.xpath("//p[@class='a-text-left a-size-base']"));
             for (int i=productSize.size()-1 ; i >=0 ; i--) {
                 productSize.get(i).click();
@@ -103,8 +98,8 @@ public class Day11_Challenge_MarketTask {
                 System.out.println("Stock: "+driver.findElement(By.xpath("(//span[@class='a-size-medium a-color-success'])")).getText());
                 System.out.println("2-------------------------------------------------------------------------------------------------------------------------");
 
-            }
-        } catch (NoSuchElementException e) {
+               }
+            } catch (NoSuchElementException e) {
             System.out.println("Elements could not be found-2: ");
                }
 
