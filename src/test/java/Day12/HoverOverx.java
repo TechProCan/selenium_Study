@@ -1,6 +1,7 @@
 package Day12;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -56,11 +57,16 @@ public class HoverOverx {
         //8- “Double click me" butonunu cift tiklayin
         WebElement doubleClickMe=driver.findElement(By.tagName("h2"));
         actions.doubleClick(doubleClickMe).perform();
+        //9. "Double click me" butonunun renk değiştridiğini doğrulayın
+        WebElement doubleColour=driver.findElement(By.xpath("//div[@id='double-click']"));
+        Assert.assertTrue(doubleColour.getAttribute("class").equals("div-double-click double"));
+        System.out.println();
+        //div-double-click double
 
     }
     @After
     public void tearDown(){
 
-        //driver.quit();
+        driver.quit();
     }
 }
