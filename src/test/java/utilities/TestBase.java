@@ -1,21 +1,28 @@
 package utilities;
 
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static org.junit.Assert.assertFalse;
 
 public abstract class TestBase {
 //    TestBase i abstract yapmamizin sebebi bu sinifin objesini olusturmak istemiyorum
@@ -29,9 +36,16 @@ public abstract class TestBase {
     //    setUp
     @Before
     public void setup()  {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        options.addArguments("--start-maximized");
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--allow-insecure-localhost");
+        options.addArguments("--acceptInsecureCerts");
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--disable-extensions");
+        driver = new ChromeDriver(options);
 
-        driver = new ChromeDriver();
-//        driver=WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));//20 SANIYEYE KADAR BEKLE.SELENIUM
     }
@@ -39,7 +53,7 @@ public abstract class TestBase {
     @After
     public void tearDown(){
 
-        driver.quit();
+       // driver.quit();
     }
 
     //    MULTIPLE WINDOW:
@@ -231,6 +245,20 @@ public abstract class TestBase {
         Select select = new Select(element);
         select.selectByIndex(index);
     }
+    protected void checkStatusNetwork() throws IOException {
+
+
+        HttpURLConnection cn = (HttpURLConnection) new URL(driver.getCurrentUrl()).openConnection();
+
+        cn.setRequestMethod("HEAD");
+        cn.connect();
+        Integer c = cn.getResponseCode();
+
+
+        assertFalse(c + "Invalid Link " + driver.getCurrentUrl(), c.toString().startsWith("4") || c.toString().startsWith("5"));
+        cn.disconnect();
+    }
+
 
 
 
