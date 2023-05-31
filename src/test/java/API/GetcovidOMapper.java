@@ -29,6 +29,7 @@ public class GetcovidOMapper {
         System.out.println("rB : "+responseBody);
         System.out.println("rJ : "+responseJson);
         response.prettyPrint();
+
         // Assert that the response body matches the expected format
         Map<String, Object> expectedResponseJson = Map.of(
                 "TotalConfirmed", 674300771,

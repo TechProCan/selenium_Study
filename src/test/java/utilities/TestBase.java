@@ -230,11 +230,11 @@ public abstract class TestBase {
 
 
     //    scrollToElement
-    public static void scrollToElement(WebElement element){
-        new Actions(driver)
-                .scrollToElement(element)
-                .perform();
-    }
+//    public static void scrollToElement(WebElement element){
+//        new Actions(driver)
+//                .scrollToElement(element)
+//                .perform();
+//    }
     public static void JSExecutorSelectVisibleText(WebElement element,String text){
         ((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('style')", element);
         Select select = new Select(element);

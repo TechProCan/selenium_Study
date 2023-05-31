@@ -50,7 +50,7 @@ public class Test01 {
         }else {
             System.out.println("Test FAIL");
         }
-
+driver.quit();
 
     }
 }

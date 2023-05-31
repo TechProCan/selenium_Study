@@ -37,7 +37,7 @@ public class sahibinde extends TestBase {
         detayli_Arama_Fiyat("4.000","4.000.000","USD");
         detayli_Arama_Brut("180","400");
         detayli_Arama_Oda_Sayisi("10+2","11-15 arası","1",6,4);
-        click_Arama_Yap_Button();
+      //  click_Arama_Yap_Button();
 
         //cikan sonuc sayisini veya sonuc yoksa bunu bildiren yaziyi konsolda yazdirin
         verify_Result("adalet mah.");
@@ -137,12 +137,12 @@ public class sahibinde extends TestBase {
 
 
     }
-    public void click_Arama_Yap_Button(){
-
-        WebElement aramaButton = driver.findElement(By.xpath("//button[@class='btn mtdef']"));
-      scrollToElement(aramaButton);
-        aramaButton.click();
-    }
+//    public void click_Arama_Yap_Button(){
+//
+//        WebElement aramaButton = driver.findElement(By.xpath("//button[@class='btn mtdef']"));
+//      scrollToElement(aramaButton);
+//        aramaButton.click();
+//    }
 
     public void verify_Result(String Mah){
         WebElement resultText=driver.findElement(By.xpath("//h1"));

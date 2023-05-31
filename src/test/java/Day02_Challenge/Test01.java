@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +21,7 @@ public class Test01 {
     //7-Sayfayi kapatin
     static WebDriver driver;
     public static void main(String[] args) throws InterruptedException {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.get("https://www.amazon.com/");
         driver.manage().window().maximize();
         driver.navigate().refresh();
